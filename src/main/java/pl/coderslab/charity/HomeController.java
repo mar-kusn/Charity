@@ -23,6 +23,7 @@ public class HomeController {
 
         model.addAttribute("institutions", institutionRepository.findAll());
         model.addAttribute("bagsReturned", donationRepository.bagsReturnedSum());
+        model.addAttribute("donationsSum", donationRepository.findAll().size());
 
         return "index";
     }
