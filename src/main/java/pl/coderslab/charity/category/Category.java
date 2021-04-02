@@ -1,8 +1,7 @@
-package pl.coderslab.category;
+package pl.coderslab.charity.category;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Category {
@@ -11,15 +10,14 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Size(min = 2, message = "min 2 characters")
+    @NotBlank(message = "Name cannot be empty")
     @Column(name = "name", nullable = false)
     private String name;
 
     public Category() {
     }
 
-    public Category(@NotNull @Size(min = 2, message = "min 2 characters") String name) {
+    public Category(@NotBlank(message = "Name cannot be empty") String name) {
         this.name = name;
     }
 

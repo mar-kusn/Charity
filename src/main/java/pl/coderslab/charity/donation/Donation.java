@@ -1,9 +1,8 @@
-package pl.coderslab.donation;
+package pl.coderslab.charity.donation;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.format.annotation.DateTimeFormat;
-import pl.coderslab.category.Category;
-import pl.coderslab.institution.Institution;
+import pl.coderslab.charity.category.Category;
+import pl.coderslab.charity.institution.Institution;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -29,15 +28,15 @@ public class Donation {
     @ManyToOne
     private Institution institution;
 
-    @NotBlank
+    @NotBlank(message = "Street name cannot be empty")
     @Column(name = "street")
     private String street;
 
-    @NotBlank
+    @NotBlank(message = "City name cannot be empty")
     @Column(name = "city")
     private String city;
 
-    @NotBlank
+    @NotBlank(message = "Zip code cannot be empty")
     @Column(name = "zip_code")
     private String zipCode;
 
@@ -49,7 +48,7 @@ public class Donation {
     @Column(name = "pick_up_time")
     private LocalTime pickUpTime;
 
-    @Size(max = 255, message = "maximum 255 characters")
+    @Size(max = 255, message = "Pick up comment should have maximum 255 characters")
     @Column(name = "pick_up_comment", columnDefinition = "varchar(255) default ''")
     private String pickUpComment;
 
@@ -59,12 +58,12 @@ public class Donation {
     public Donation(@Size(min = 1) Integer quantity,
                     List<Category> categories,
                     Institution institution,
-                    @NotBlank String street,
-                    @NotBlank String city,
-                    @NotBlank String zipCode,
+                    @NotBlank(message = "Street name cannot be empty") String street,
+                    @NotBlank(message = "City name cannot be empty") String city,
+                    @NotBlank(message = "Zip code cannot be empty") String zipCode,
                     LocalDate pickUpDate,
                     LocalTime pickUpTime,
-                    @Size(max = 255, message = "maximum 255 characters") String pickUpComment) {
+                    @Size(max = 255, message = "Pick up comment should have maximum 255 characters") String pickUpComment) {
         this.quantity = quantity;
         this.categories = categories;
         this.institution = institution;
