@@ -37,8 +37,9 @@
                     <div class="form-group form-group--checkbox">
                         <label>
                             <input type="checkbox" name="categories" value="${category.id}" />
+<%--                            <form:checkbox path="categories" value="${category.id}"/>--%>
                             <span class="checkbox"></span>
-                            <span class="description" >${category.name}</span>
+                            <span id="category" class="description" >${category.name}</span>
                         </label>
                     </div>
                 </c:forEach>
@@ -72,10 +73,10 @@
                 <c:forEach items="${institutions}" var="institution">
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <input type="radio" name="organization" value="${institution.id}" />
+                            <form:radiobutton path="institution" value="${institution.id}"/>
                             <span class="checkbox radio"></span>
                             <span class="description">
-                                <div class="title">${institution.name}</div>
+                                <div id="institution" class="title">${institution.name}</div>
                                 <div class="subtitle">${institution.description}</div>
                             </span>
                         </label>
@@ -96,16 +97,16 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica <form:input path="street" type="text" name="address" /> </label>
+                            <label> Ulica <form:input id="street" path="street" type="text" name="street" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Miasto <form:input path="city" type="text" name="city" /> </label>
+                            <label> Miasto <form:input id="city" path="city" type="text" name="city" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <form:input path="zipCode" type="text" name="zipCode" />
+                                Kod pocztowy <form:input id="zipCode" path="zipCode" type="text" name="zipCode" />
                             </label>
                         </div>
 
@@ -120,28 +121,28 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <form:input path="pickUpDate" type="date" name="pickUpDate" /> </label>
+                            <label> Data <form:input id="pickUpDate" path="pickUpDate" type="date" name="pickUpDate" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <form:input path="pickUpTime" type="time" name="pickUpTime" /> </label>
+                            <label> Godzina <form:input id="pickUpTime" path="pickUpTime" type="time" name="pickUpTime" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <form:textarea path="pickUpComment" name="pickUpComment" rows="5"></form:textarea>
+                                <form:textarea id="pickUpComment" path="pickUpComment" name="pickUpComment" rows="5"></form:textarea>
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" id="summaryBtn" class="btn next-step">Dalej</button>
                 </div>
             </div>
 
-            <!-- STEP 6 -->
+            <!-- STEP 5 -->
             <div data-step="5">
                 <h3>Podsumowanie Twojej darowizny</h3>
 
@@ -151,16 +152,15 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text"
-                                >4 worki ubrań w dobrym stanie dla dzieci</span
-                                >
+                                <span class="summary--text">
+                                    <span id="summQuantity"></span> worki:
+                                    <span id="summCategories"></span> <%--ubrań w dobrym stanie dla dzieci--%></span>
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text"
-                                >Dla fundacji "Mam marzenie" w Warszawie</span
-                                >
+                                <span class="summary--text">Dla fundacji
+                                    <span id="summInstitutionName"></span><%-- "Mam marzenie" w Warszawie--%></span>
                             </li>
                         </ul>
                     </div>
@@ -169,19 +169,19 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li>Prosta 51</li>
-                                <li>Warszawa</li>
-                                <li>99-098</li>
-                                <li>123 456 789</li>
+                                <li id="summPickupStreet"><%--Prosta 51--%></li>
+                                <li id="summPickupCity"><%--Warszawa--%></li>
+                                <li id="summPickupZipCode"><%--99-098--%></li>
+                                <li id="summPhone"><%--123 456 789--%></li>
                             </ul>
                         </div>
 
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li>13/12/2018</li>
-                                <li>15:40</li>
-                                <li>Brak uwag</li>
+                                <li id="summPickupDate"><%--13/12/2018--%></li>
+                                <li id="summPickupTime"><%--15:40--%></li>
+                                <li id="summPickUpComment"><%--Brak uwag--%></li>
                             </ul>
                         </div>
                     </div>
@@ -199,3 +199,4 @@
 
 
 <%@include file="footer.jsp"%>
+<script src="<c:url value="resources/js/form.js"/>"></script>
