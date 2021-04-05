@@ -19,11 +19,14 @@ public class DonationController {
 
     private final CategoryRepository categoryRepository;
     private final InstitutionRepository institutionRepository;
+    private final DonationRepository donationRepository;
 
     public DonationController(CategoryRepository categoryRepository,
-                              InstitutionRepository institutionRepository) {
+                              InstitutionRepository institutionRepository,
+                              DonationRepository donationRepository) {
         this.categoryRepository = categoryRepository;
         this.institutionRepository = institutionRepository;
+        this.donationRepository = donationRepository;
     }
 
     @GetMapping("/form")
@@ -37,6 +40,8 @@ public class DonationController {
         if (bindingResult.hasErrors()) {
             return "form";
         }
+
+        donationRepository.save(donation);
 
         return "form-confirmation";
     }

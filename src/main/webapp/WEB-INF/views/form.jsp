@@ -5,6 +5,34 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@include file="header-form.jsp"%>
 
+<div class="slogan container container--90">
+    <div class="slogan--item">
+        <h1>
+            Oddaj rzeczy, których już nie chcesz<br />
+            <span class="uppercase">potrzebującym</span>
+        </h1>
+
+        <div class="slogan--steps">
+            <div class="slogan--steps-title">Wystarczą 4 proste kroki:</div>
+            <ul class="slogan--steps-boxes">
+                <li>
+                    <div><em>1</em><span>Wybierz rzeczy</span></div>
+                </li>
+                <li>
+                    <div><em>2</em><span>Spakuj je w worki</span></div>
+                </li>
+                <li>
+                    <div><em>3</em><span>Wybierz fundację</span></div>
+                </li>
+                <li>
+                    <div><em>4</em><span>Zamów kuriera</span></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</header>
+
 <section class="form--steps">
     <div class="form--steps-instructions">
         <div class="form--steps-container">
@@ -28,7 +56,7 @@
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form:form action="form-confirmation.html" method="post" modelAttribute="donation">
+        <form:form action="" method="post" modelAttribute="donation">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
