@@ -71,6 +71,8 @@
                         </label>
                     </div>
                 </c:forEach>
+<%--                <form:errors path="categories" cssClass="error" element="div" />--%>
+                <form:errors path="categories" cssStyle="color: red; font-size: 12px" element="div" />
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
@@ -84,8 +86,9 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <form:input type="number" name="quantity" step="1" min="1" path="quantity"/>
+                        <form:input id="quantity" type="number" name="quantity" step="1" min="1" path="quantity"/>
                     </label>
+                    <form:errors path="quantity" cssStyle="color: red; font-size: 12px" element="div" />
                 </div>
 
                 <div class="form-group form-group--buttons">
@@ -110,6 +113,7 @@
                         </label>
                     </div>
                 </c:forEach>
+                <form:errors path="institution" cssStyle="color: red; font-size: 12px" element="div" />
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
@@ -126,16 +130,19 @@
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
                             <label> Ulica <form:input id="street" path="street" type="text" name="street" /> </label>
+                            <form:errors path="street" cssStyle="color: red; font-size: 12px" element="div" />
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label> Miasto <form:input id="city" path="city" type="text" name="city" /> </label>
+                            <form:errors path="city" cssStyle="color: red; font-size: 12px" element="div" />
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Kod pocztowy <form:input id="zipCode" path="zipCode" type="text" name="zipCode" />
                             </label>
+                            <form:errors path="zipCode" cssStyle="color: red; font-size: 12px" element="div" />
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -143,6 +150,7 @@
                                 Numer telefonu
 <%--                                <form:input path="phone" type="phone" name="phone" />--%>
                             </label>
+<%--                            <form:errors path="phone" cssStyle="color: red; font-size: 12px" element="div" />--%>
                         </div>
                     </div>
 
@@ -150,16 +158,19 @@
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
                             <label> Data <form:input id="pickUpDate" path="pickUpDate" type="date" name="pickUpDate" /> </label>
+                            <form:errors path="pickUpDate" cssStyle="color: red; font-size: 12px" element="div" />
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label> Godzina <form:input id="pickUpTime" path="pickUpTime" type="time" name="pickUpTime" /> </label>
+                            <form:errors path="pickUpTime" cssStyle="color: red; font-size: 12px" element="div" />
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
                                 <form:textarea id="pickUpComment" path="pickUpComment" name="pickUpComment" rows="5"></form:textarea>
+                                <form:errors path="pickUpComment" cssStyle="color: red; font-size: 12px" element="div" />
                             </label>
                         </div>
                     </div>
