@@ -7,7 +7,8 @@
 <section class="stats">
     <div class="container container--85">
         <div class="stats--item">
-            <em>${returnedBagsSum > 0 ? returnedBagsSum : '0'}</em>
+<%--            <em>${returnedBagsSum > 0 ? returnedBagsSum : '0'}</em>--%>
+            <em><c:out value="${returnedBagsSum }"></c:out></em>
 
             <h3>Oddanych worków</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
@@ -73,14 +74,19 @@
             Możesz sprawdzić czym się zajmują.</p>
 
         <ul class="help--slides-items">
-            <li>
-                <c:forEach items="${institutions}" var="institution" varStatus="status">
+            <c:forEach items="${institutions}" var="institution" varStatus="status">
+                <c:if test="${status.count %2 != 0}" >
+                    <li>
+                </c:if>
                 <div class="col">
                     <div class="title">${institution.name}</div>
                     <div class="subtitle">${institution.description}</div>
                 </div>
-                    ${ status.last ? '</li>' : (status.index  %2 != 0) ? '</li><li>' : ''}
-                </c:forEach>
+                <c:if test="${status.count %2 == 0 || status.last}" >
+                    </li>
+                </c:if>
+            </c:forEach>
+            </li>
         </ul>
     </div>
 
