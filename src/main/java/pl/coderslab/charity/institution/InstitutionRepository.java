@@ -1,4 +1,4 @@
-package pl.coderslab.institution;
+package pl.coderslab.charity.institution;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

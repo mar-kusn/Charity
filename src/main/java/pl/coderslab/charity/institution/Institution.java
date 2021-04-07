@@ -1,30 +1,30 @@
-package pl.coderslab.institution;
+package pl.coderslab.charity.institution;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "institutions")
 public class Institution {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Size(min = 2, message = "min 2 characters")
+    @NotBlank(message = "Name cannot be empty")
     @Column(name = "name", nullable = false)
     private String name;
 
-    @NotNull
-    @Column(name = "description")
+    @Size(max = 255, message = "Pick up comment should have maximum 255 characters")
+    @Column(name = "description", columnDefinition = "varchar(255) default ''")
     private String description;
 
     public Institution() {
     }
 
-    public Institution(@NotNull @Size(min = 2, message = "min 2 characters") String name,
-                       @NotNull String description) {
+    public Institution(@NotBlank(message = "Name cannot be empty") String name,
+                       @Size(max = 255, message = "Pick up comment should have maximum 255 characters") String description) {
         this.name = name;
         this.description = description;
     }
