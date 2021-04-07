@@ -1,6 +1,5 @@
 var summaryBtn = document.querySelector("#summaryBtn");
 
-
 summaryBtn.addEventListener( 'click', function() {
   const categories = document.querySelectorAll("#categories");
   const quantity = document.querySelector("#quantity").value;
@@ -14,7 +13,7 @@ summaryBtn.addEventListener( 'click', function() {
 
   document.querySelector("#summQuantity").innerHTML = quantity;
   document.querySelector("#summCategories").innerHTML = getSelectedCheckbox2ndChldValues("categories");
-  document.querySelector("#summInstitutionName").innerHTML = getSelectedInstitution("institution");
+  document.querySelector("#summInstitutionName").innerHTML = getSelectedCheckbox2ndSibil1ChildVal("institution");
   document.querySelector("#summPickupStreet").innerHTML = street;
   document.querySelector("#summPickupCity").innerHTML = city;
   document.querySelector("#summPickupZipCode").innerHTML = zipCode;
@@ -42,7 +41,7 @@ function getSelectedCheckbox2ndChldValues(name) {
   return values;
 }
 
-function getSelectedInstitution(name) {
+function getSelectedCheckbox2ndSibil1ChildVal(name) {
   const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
   let values = [];
   checkboxes.forEach((checkbox) => {

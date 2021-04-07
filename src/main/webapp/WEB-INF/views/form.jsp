@@ -71,7 +71,6 @@
                         </label>
                     </div>
                 </c:forEach>
-<%--                <form:errors path="categories" cssClass="error" element="div" />--%>
                 <form:errors path="categories" cssStyle="color: red; font-size: 12px" element="div" />
 
                 <div class="form-group form-group--buttons">
@@ -192,14 +191,14 @@
                             <li>
                                 <span class="icon icon-bag"></span>
                                 <span class="summary--text">
-                                    <span id="summQuantity"></span> worki:
-                                    <span id="summCategories"></span> <%--ubrań w dobrym stanie dla dzieci--%></span>
+                                    Ilość: <span id="summQuantity"></span>, zawartość:
+                                    <span id="summCategories"></span></span>
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text">Dla fundacji
-                                    <span id="summInstitutionName"></span><%-- "Mam marzenie" w Warszawie--%></span>
+                                <span class="summary--text">Dla fundacji:
+                                    <span id="summInstitutionName"></span></span>
                             </li>
                         </ul>
                     </div>
@@ -208,19 +207,19 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li id="summPickupStreet"><%--Prosta 51--%></li>
-                                <li id="summPickupCity"><%--Warszawa--%></li>
-                                <li id="summPickupZipCode"><%--99-098--%></li>
-                                <li id="summPhone"><%--123 456 789--%></li>
+                                <li id="summPickupStreet"></li>
+                                <li id="summPickupCity"></li>
+                                <li id="summPickupZipCode"></li>
+                                <li id="summPhone"></li>
                             </ul>
                         </div>
 
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li id="summPickupDate"><%--13/12/2018--%></li>
-                                <li id="summPickupTime"><%--15:40--%></li>
-                                <li id="summPickUpComment"><%--Brak uwag--%></li>
+                                <li id="summPickupDate"></li>
+                                <li id="summPickupTime"></li>
+                                <li id="summPickUpComment"></li>
                             </ul>
                         </div>
                     </div>
