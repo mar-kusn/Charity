@@ -5,8 +5,7 @@ import pl.coderslab.charity.category.Category;
 import pl.coderslab.charity.institution.Institution;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -19,13 +18,15 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 1)
+    @Min(value = 1, message = "Minimum quantity is 1")
     @Column(name = "quantity")
     private Integer quantity;
 
+    @NotNull(message = "Categories canont be empty")
     @ManyToMany
     private List<Category> categories;
 
+    @NotNull(message = "Institution canont be empty")
     @ManyToOne
     private Institution institution;
 
@@ -41,10 +42,12 @@ public class Donation {
     @Column(name = "zip_code")
     private String zipCode;
 
+    @NotNull(message = "Pick Up Date cannot be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "pick_up_date")
     private LocalDate pickUpDate;
 
+    @NotNull(message = "Pick Up Time cannot be empty")
     @DateTimeFormat(pattern = "H:mm")
     @Column(name = "pick_up_time")
     private LocalTime pickUpTime;
