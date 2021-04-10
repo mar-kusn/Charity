@@ -64,8 +64,7 @@
                 <c:forEach items="${categories}" var="category">
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <input type="checkbox" name="categories" value="${category.id}" />
-<%--                            <form:checkbox path="categories" value="${category.id}"/>--%>
+                            <form:checkbox path="categories" value="${category.id}"/>
                             <span class="checkbox"></span>
                             <span id="category" class="description" >${category.name}</span>
                         </label>
@@ -74,7 +73,7 @@
                 <form:errors path="categories" cssStyle="color: red; font-size: 12px" element="div" />
 
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <form:button type="button" id="step1BtnNext" class="btn next-step">Dalej</form:button>
                 </div>
             </div>
 
@@ -91,8 +90,8 @@
                 </div>
 
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <form:button type="button" id="step2BtnPrev" class="btn prev-step">Wstecz</form:button>
+                    <form:button type="button" id="step2BtnNext" class="btn next-step">Dalej</form:button>
                 </div>
             </div>
 
@@ -115,8 +114,8 @@
                 <form:errors path="institution" cssStyle="color: red; font-size: 12px" element="div" />
 
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <form:button type="button" id="step3BtnPrev" class="btn prev-step">Wstecz</form:button>
+                    <form:button type="button" id="step3BtnNext" class="btn next-step">Dalej</form:button>
                 </div>
             </div>
 
@@ -138,8 +137,11 @@
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label>
-                                Kod pocztowy <form:input id="zipCode" path="zipCode" type="text" name="zipCode" />
+                            <label>Kod pocztowy
+                                <form:input id="zipCode" path="zipCode" type="text" name="zipCode"
+                                            placeholder="XX(-)XXX" maxlength="6"
+                                    oninput="this.value = this.value.replace(/[^-\ \d]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                    onchange="checkZipCodePattern(this);"/>
                             </label>
                             <form:errors path="zipCode" cssStyle="color: red; font-size: 12px" element="div" />
                         </div>
@@ -147,21 +149,23 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 Numer telefonu
-<%--                                <form:input path="phone" type="phone" name="phone" />--%>
+                                <form:input id="phoneNumber" path="phoneNumber" type="tel" name="phoneNumber"
+                                    oninput="this.value = this.value.replace(/[^+\ 0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                    onchange="checkPhoneNrPattern(this);" maxlength="15" />
                             </label>
-<%--                            <form:errors path="phone" cssStyle="color: red; font-size: 12px" element="div" />--%>
+                            <form:errors path="phoneNumber" cssStyle="color: red; font-size: 12px" element="div" />
                         </div>
                     </div>
 
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <form:input id="pickUpDate" path="pickUpDate" type="date" name="pickUpDate" /> </label>
+                            <label> Data <form:input id="pickUpDate" path="pickUpDate" type="date" name="pickUpDate" onchange="checkDate()" /> </label>
                             <form:errors path="pickUpDate" cssStyle="color: red; font-size: 12px" element="div" />
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <form:input id="pickUpTime" path="pickUpTime" type="time" name="pickUpTime" /> </label>
+                            <label> Godzina <form:input id="pickUpTime" path="pickUpTime" type="time" name="pickUpTime" onchange="checkTime()" /> </label>
                             <form:errors path="pickUpTime" cssStyle="color: red; font-size: 12px" element="div" />
                         </div>
 
@@ -175,8 +179,8 @@
                     </div>
                 </div>
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" id="summaryBtn" class="btn next-step">Dalej</button>
+                    <form:button type="button" id="step4BtnPrev" class="btn prev-step">Wstecz</form:button>
+                    <form:button type="button" id="step4BtnNext" class="btn next-step">Dalej</form:button>
                 </div>
             </div>
 
@@ -226,8 +230,9 @@
                 </div>
 
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="submit" class="btn">Potwierdzam</button>
+                    <form:button type="button" class="btn prev-step">Wstecz</form:button>
+<%--                    <button type="submit" class="btn">Potwierdzam</button>--%>
+                    <form:input type="button" value="Potwierdzam" onclick="this.form.submit()" path=""/>
                 </div>
             </div>
         </form:form>

@@ -3,6 +3,7 @@ package pl.coderslab.charity.donation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,11 @@ public class DonationController {
     @PostMapping("/form")
     public String donationAddFormPerform(@Valid Donation donation, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            return "form";
+        }
+
+        if (donation.getQuantity() <= 0) {
+            bindingResult.addError(new ObjectError("Quantity", "Quantity cannot be less or equal 0"));
             return "form";
         }
 

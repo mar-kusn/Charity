@@ -18,11 +18,12 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Quantity cannot be empty")
     @Min(value = 1, message = "Minimum quantity is 1")
     @Column(name = "quantity")
     private Integer quantity;
 
-    @NotNull(message = "Categories canont be empty")
+    @NotEmpty(message = "Categories canont be empty")
     @ManyToMany
     private List<Category> categories;
 
@@ -42,12 +43,12 @@ public class Donation {
     @Column(name = "zip_code")
     private String zipCode;
 
-    @NotNull(message = "Pick Up Date cannot be empty")
+    @NotNull(message = "Pick up date cannot be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "pick_up_date")
     private LocalDate pickUpDate;
 
-    @NotNull(message = "Pick Up Time cannot be empty")
+    @NotNull(message = "Pick up time cannot be empty")
     @DateTimeFormat(pattern = "H:mm")
     @Column(name = "pick_up_time")
     private LocalTime pickUpTime;
@@ -56,18 +57,24 @@ public class Donation {
     @Column(name = "pick_up_comment", columnDefinition = "varchar(255) default ''")
     private String pickUpComment;
 
+    @Size(min = 9, max = 15)
+    @NotBlank(message = "Phone number cannot be empty")
+    @Column(name = "phone_number", length = 15)
+    private String phoneNumber;
+
     public Donation() {
     }
 
-    public Donation(@Size(min = 1) Integer quantity,
+    public Donation(Integer quantity,
                     List<Category> categories,
                     Institution institution,
-                    @NotBlank(message = "Street name cannot be empty") String street,
-                    @NotBlank(message = "City name cannot be empty") String city,
-                    @NotBlank(message = "Zip code cannot be empty") String zipCode,
+                    String street,
+                    String city,
+                    String zipCode,
                     LocalDate pickUpDate,
                     LocalTime pickUpTime,
-                    @Size(max = 255, message = "Pick up comment should have maximum 255 characters") String pickUpComment) {
+                    String pickUpComment,
+                    String phoneNumber) {
         this.quantity = quantity;
         this.categories = categories;
         this.institution = institution;
@@ -77,6 +84,7 @@ public class Donation {
         this.pickUpDate = pickUpDate;
         this.pickUpTime = pickUpTime;
         this.pickUpComment = pickUpComment;
+        this.phoneNumber = phoneNumber;
     }
 
     public Long getId() {
@@ -169,6 +177,15 @@ public class Donation {
         return this;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Donation setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Donation{" +
@@ -182,6 +199,7 @@ public class Donation {
                 ", pickUpDate=" + pickUpDate +
                 ", pickUpTime=" + pickUpTime +
                 ", pickUpComment='" + pickUpComment + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
 }
