@@ -1,7 +1,9 @@
 package pl.coderslab.charity.user;
 
 public interface UserService {
-    User findByUserName(String username);
+    User findByUsername(String username);
 
     void saveUser(User user);
+
+    User findByEmail(String email);
 }

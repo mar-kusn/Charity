@@ -11,16 +11,6 @@ import pl.coderslab.charity.user.SpringDataUserDetailsService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-/*
-
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user1").password("{noop}user123").roles("USER")
-                .and()
-                .withUser("admin1").password("{noop}admin123").roles("ADMIN");
-    }
-*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -30,6 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
                 .and().formLogin()
                 //    .loginPage("/login")
+                    .defaultSuccessUrl("/")
+                    .permitAll()
+                    .failureUrl("/login?error")
                 .and().logout()
                     .logoutSuccessUrl("/")
                 .and().exceptionHandling()

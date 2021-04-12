@@ -88,7 +88,7 @@ function checkTime() {
 
 function checkPhoneNrPattern(phoneNumber) {
   var reg = /(\+?[1-9]{2})?(\ )?[0-9]{2,3}(\ )?[0-9]{2,3}(\ )?[0-9]{2,3}/;
-  var OK = reg.exec(phoneNumber.value);
+  var OK = reg.test(phoneNumber.value);
   if (!OK) {
     window.alert("phone number isn't valid");
     phoneNumber.value = "";
@@ -98,7 +98,7 @@ function checkPhoneNrPattern(phoneNumber) {
 
 function checkZipCodePattern(zipCode) {
   var reg = /([1-9]{2})([-\ ])?[0-9]{3}/;
-  var OK = reg.exec(zipCode.value);
+  var OK = reg.test(zipCode.value);
   if (!OK) {
     window.alert("Zip code isn't valid");
     zipCode.value = "";
