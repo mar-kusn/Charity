@@ -9,7 +9,7 @@
 
 <section class="login-page">
     <h2>Zaloguj się</h2>
-    <c:if test="${param.error != null}">
+    <c:if test="${param.error ne null}">
         <div style="color: red">Invalid username or password.</div>
     </c:if>
     <form method="post" action="/login">
