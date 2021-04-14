@@ -15,29 +15,33 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "cannot be empty")
     @Size(min = 2, message = "min 2 characters")
     @Column(name = "first_name")
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "cannot be empty")
     @Size(min = 2, message = "min 2 characters")
     @Column(name = "last_name")
     private String lastName;
 
     @Size(min = 5, max = 60, message = "must between 5 and 60")
+    @NotBlank(message = "cannot be empty")
     @Column(nullable = false, unique = true, length = 60)
     private String username;
 
     @Email
+    @NotBlank(message = "cannot be empty")
     @Column(nullable = false, unique = true, length = 60)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @NotBlank(message = "cannot be empty")
     @Size(min = 8, message = "min 8 characters")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Transient
+    @NotBlank(message = "cannot be empty")
     private String password2;
 
     private int enabled;

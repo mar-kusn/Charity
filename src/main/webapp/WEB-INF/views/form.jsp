@@ -233,13 +233,12 @@
                     <form:button type="button" class="btn prev-step">Wstecz</form:button>
 <%--                    <button type="submit" class="btn">Potwierdzam</button>--%>
                     <form:input type="button" value="Potwierdzam" onclick="this.form.submit()" path=""/>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </div>
             </div>
         </form:form>
     </div>
 </section>
-
-
 
 <%@include file="footer.jsp"%>
 <script src="<c:url value="resources/js/form.js"/>"></script>

@@ -27,7 +27,7 @@ public class UserController {
         user.setUsername("ADMIN");
         user.setEmail("admin@donation.com.pl");
         user.setPassword("admin");
-        userService.saveUser(user);
+        userService.addUser(user);
         return "admin";
     }
 
@@ -45,10 +45,10 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerFormPerform(@Valid User user, BindingResult bindingResult, Model m) {
-        User existUserName = userService.findByUsername(user.getUsername());
+    public String registerFormPerform(@Valid User user, BindingResult bindingResult) {
 
-        User existUserEmail = userService.findByEmail(user.getEmail());
+        boolean userNameExists = userService.existsByName(user.getUsername());
+        boolean userEmailExists = userService.existsByEmail(user.getEmail());
 
         if (!user.getPassword().equals(user.getPassword2())) {
             bindingResult
@@ -57,13 +57,15 @@ public class UserController {
             bindingResult
                     .rejectValue("password", "error.user",
                             "Password and password2 are different");
+            user.setPassword("");
+            user.setPassword2("");
         }
-        if (existUserName != null) {
+        if (userNameExists) {
             bindingResult
                     .rejectValue("username", "error.user",
                             "There is a user registered with the user name provided");
         }
-        if (existUserEmail != null) {
+        if (userEmailExists) {
             bindingResult
                     .rejectValue("email", "error.user",
                             "There is a user registered with the email provided");
@@ -72,10 +74,7 @@ public class UserController {
             return "register";
         }
 
-        user.setEnabled(1);
-        userService.saveUser(user);
-        m.addAttribute("successMessage", "User has been registered ");
-        m.addAttribute("user", new User());
+        userService.addUser(user);
 
         return "redirect:/login";
     }
