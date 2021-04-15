@@ -14,7 +14,7 @@
     </c:if>
     <form method="post" action="/login">
         <div class="form-group">
-            <input type="text" name="username" placeholder="Nazwa użytkownika" path="username"/>
+            <input type="text" name="username" placeholder="Nazwa użytkownika" path="username" autofocus/>
         </div>
         <div class="form-group">
             <input type="password" name="password" placeholder="Hasło" path="password"/>
