@@ -3,7 +3,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
@@ -35,12 +34,14 @@
 <!-- Custom scripts for all pages-->
 <script src="resources/js/sb-admin-2.min.js"></script>
 
+<%--
 <!-- Page level plugins -->
 <script src="resources/vendor/chart.js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
 <script src="resources/js/demo/chart-area-demo.js"></script>
 <script src="resources/js/demo/chart-pie-demo.js"></script>
+--%>
 
 </body>
 
