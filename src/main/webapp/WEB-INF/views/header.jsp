@@ -23,11 +23,10 @@
                     <ul class="dropdown">
                         <li><a href="#">Profil</a></li>
                         <li><a href="#">Moje zbiórki</a></li>
+                        <sec:authorize access="hasAuthority('ROLE_ADMIN')">
+                            <li><a href="/admin">Admin panel</a></li>
+                        </sec:authorize>
                         <li><a href="/logout">Wyloguj</a></li>
-                        <%--<form action="<c:url value="/logout"/>" method="post">
-                            <input type="submit" value="Wyloguj">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                        </form>--%>
                     </ul>
                 </li>
             </sec:authorize>

@@ -1,6 +1,7 @@
 package pl.coderslab.charity.user;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,7 +40,13 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String registerFormShow(Model model) {
+    public String registerFormShow(SecurityContextHolderAwareRequestWrapper request, Model model) {
+        if (request.isUserInRole("ROLE_USER")) {
+            return "redirect:/";
+        }
+        if (request.isUserInRole("ROLE_ADMIN")) {
+            return "redirect:/admin";
+        }
         model.addAttribute("user", new User());
         return "register";
     }

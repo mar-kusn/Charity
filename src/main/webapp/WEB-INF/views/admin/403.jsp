@@ -13,6 +13,8 @@
         <p>Status Code: 403</p>
         <p>Sorry, your access is refused due to security reasons of our server and also our sensitive data.<br/>
             Please go back to the previous page to continue browsing.</p>
+        <p>Przepraszamy, odmówiono dostępu ze względów bezpieczeństwa naszego serwera, a także naszych wrażliwych danych.
+            Wróć do poprzedniej strony, aby kontynuować przeglądanie.</p>
 
         <div style="margin-left: calc(50% - 60px);">
             <a class="btn btn-danger" href="javascript:history.back()">Go Back</a>
